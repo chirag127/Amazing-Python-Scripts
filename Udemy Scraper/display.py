@@ -6,8 +6,7 @@ from sqlite3 import Error
 
 def sql_connection():
     try:
-        con = sqlite3.connect('./Udemy Scraper/udemyDatabase.db')
-        return con
+        return sqlite3.connect('./Udemy Scraper/udemyDatabase.db')
     except Error:
         print(Error)
 
@@ -36,12 +35,18 @@ def sql_fetch(con):
     # Print all rows
     for row in rows:
         # Format individual data items for printing in a table like manner
-        title = "{:<30}".format(row[0] if len(
-            row[0]) < 30 else row[0][:26]+"...")
+        title = "{:<30}".format(
+            row[0] if len(row[0]) < 30 else f"{row[0][:26]}..."
+        )
+
         description = "{:<30}".format(
-            row[1] if len(row[1]) < 30 else row[1][:26]+"...")
-        instructor = "{:<20}".format(row[2] if len(
-            row[2]) < 30 else row[2][:16]+"...")
+            row[1] if len(row[1]) < 30 else f"{row[1][:26]}..."
+        )
+
+        instructor = "{:<20}".format(
+            row[2] if len(row[2]) < 30 else f"{row[2][:16]}..."
+        )
+
         current_price = "{:^15}".format(row[3])
         original_price = "{:^18}".format(row[4])
         rating = "{:^10}".format(row[5])

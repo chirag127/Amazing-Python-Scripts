@@ -51,8 +51,7 @@ def CrossProduct(Vals):
 
 def abs_val(Vals):
     """ Absolute value of a vector |v| """
-    res = (Vals[0]**2 + Vals[1]**2 + Vals[2]**2)**0.5
-    return res
+    return (Vals[0]**2 + Vals[1]**2 + Vals[2]**2)**0.5
 
 
 def Angle(Vals):
@@ -145,7 +144,7 @@ def on_closing():
 def Show_Vec_Frame(vec_num, values):
     """ Shows the properties of a single vector """
     global vec_window_count
-    
+
     if vec_num == 1:
         values = values[:3]
         title = "Vector A Properties"
@@ -179,13 +178,13 @@ def Show_Vec_Frame(vec_num, values):
     Unit_Vector_lbl = Label(vec_window, text="Unit Vector: ", anchor=E, font=("Calibri", 8))
     uv_x_lbl = Label(vec_window, text="X > ", anchor=E, font=("Calibri", 8))
     uv_x_val = Text(vec_window, height=1, borderwidth=0)
-    uv_x_val.insert(1.0, str(uv_x))
+    uv_x_val.insert(1.0, uv_x)
     uv_y_lbl = Label(vec_window, text="Y > ", anchor=E, font=("Calibri", 8))
     uv_y_val = Text(vec_window, height=1, borderwidth=0)
-    uv_y_val.insert(1.0, str(uv_y))
+    uv_y_val.insert(1.0, uv_y)
     uv_z_lbl = Label(vec_window, text="Z > ", anchor=E, font=("Calibri", 8))
     uv_z_val = Text(vec_window, height=1, borderwidth=0)
-    uv_z_val.insert(1.0, str(uv_z))
+    uv_z_val.insert(1.0, uv_z)
     Unit_Vector_lbl.place(x=10, y=30)
     uv_x_lbl.place(x=25, y=50)
     uv_x_val.place(x=50, y=51, width=80)
@@ -219,7 +218,7 @@ def Show_Vec_Frame(vec_num, values):
     beta_val.place(x=50, y=161, width=80)
     gamma_lbl.place(x=25, y=180)
     gamma_val.place(x=50, y=181, width=80)
-    
+
     vec_window.mainloop()
 # <----- Single Vector Properties GUI-Backend Code Block End ----->
 

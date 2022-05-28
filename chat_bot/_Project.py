@@ -191,7 +191,7 @@ def refresh_screen () :
 
 #------------------------------------------------------------------------------------------
 
-def submit() :
+def submit():
 
     """
 function for producing response of
@@ -202,30 +202,49 @@ function for producing response of
     button_write.place_forget ()
     global chat_raw
     chat_raw = entry.get('1.0' , 'end-1c')
-                        
+
     entry.delete('1.0' , END)
-    
+
     chat = chat_raw.lower()
     chat = chat.replace(' ','')
 
     global label_request
     label_request = Label(frame_chats ,text=chat_raw , bg = c4 , fg= c7  , justify = LEFT , wraplength = 300, font = 'Verdana 10 bold')
-    
+
     label_request.pack(anchor = 'w')   
-    
+
     global answer
-    
-    if chat == 'whodevelopedyou?' or chat == 'whoinventedyou?' or chat == 'developer' or chat == 'whoisyourgod?':                                              
-          answer = "Varshith"
 
-    elif chat == "what'smyname?" or chat == "whatsmyname?" or chat == "whatismyname?" or chat == "whatsmyname" or chat == 'myname?' or chat =='myname' :
-          answer = myname
+    if chat in [
+        'whodevelopedyou?',
+        'whoinventedyou?',
+        'developer',
+        'whoisyourgod?',
+    ]:                                              
+        answer = "Varshith"
 
-    elif chat == "what'syourname?" or chat == "whatisyourname?" or chat == "whatsyourname?" or chat == "whatsyourname" or chat == 'yourname?' or chat =='yourname' :
-          answer = chatbot
+    elif chat in [
+        "what'smyname?",
+        "whatsmyname?",
+        "whatismyname?",
+        "whatsmyname",
+        'myname?',
+        'myname',
+    ]:
+        answer = myname
 
-    elif chat == 'bye' or chat == 'goodbye' or chat == 'exit' or chat == 'close' or chat == 'end' :
-          answer = 'Bye'
+    elif chat in [
+        "what'syourname?",
+        "whatisyourname?",
+        "whatsyourname?",
+        "whatsyourname",
+        'yourname?',
+        'yourname',
+    ]:
+        answer = chatbot
+
+    elif chat in ['bye', 'goodbye', 'exit', 'close', 'end']:
+        answer = 'Bye'
 
     else:
         i = 0
@@ -240,7 +259,7 @@ function for producing response of
                     break
              else:
                  j += 1
-                 
+
         if i == j :
               answer = "I don't understand.........please teach me ! "
               button_write.place(x=430,y=3)

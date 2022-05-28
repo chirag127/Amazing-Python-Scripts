@@ -17,8 +17,11 @@ class StickyNotes(Toplevel):
         # master (root) window
         self.overrideredirect(True)
         global no_of_windows
-        self.geometry('350x450+' + str(1000+no_of_windows*(-30)
-                                       ) + '+' + str(100 + no_of_windows*20))
+        self.geometry(
+            (f'350x450+{str(1000+no_of_windows*(-30))}' + '+')
+            + str(100 + no_of_windows * 20)
+        )
+
         self.config(bg='#838383')
         self.attributes('-topmost', 'true')
         self.resizable(True, True)

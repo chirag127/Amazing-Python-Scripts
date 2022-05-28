@@ -30,7 +30,7 @@ def wikiScraper():
     entry = entry_str.get()
     entry = entry.split()
     query = '_'.join([i.capitalize() for i in entry])
-    req = requests.get('https://en.wikipedia.org/wiki/'+query)
+    req = requests.get(f'https://en.wikipedia.org/wiki/{query}')
 
     # to check for valid URL
     if req.status_code == 200:
@@ -39,7 +39,7 @@ def wikiScraper():
 
         # Finding text within infobox and storing it in a dictionary
         info_table = soup.find('table', {'class': 'infobox'})
-        
+
         try:
             for tr in info_table.find_all('tr'):
                 try:
@@ -50,7 +50,7 @@ def wikiScraper():
 
         except:
             error_box()
-        
+
         # Creating a pop up window to show the results
         global popup
         popup = Toplevel()
@@ -59,17 +59,17 @@ def wikiScraper():
         r = 1
 
         for k, v in info_dict.items(): 
-            e1 = Label(popup, text=k+" : ", bg='cyan4', font=('Arial',10,'bold'))
+            e1 = Label(popup, text=f"{k} : ", bg='cyan4', font=('Arial',10,'bold'))
             e1.grid(row=r, column=1, sticky='nsew')
 
             e2 = Label(popup, text=info_dict[k], bg="cyan2", font=('Arial',10, 'bold'))
             e2.grid(row=r, column=2, sticky='nsew')
-            
-            r += 1 
-            e3 = Label(popup, text='', font=('Arial',10,'bold')) 
-            e3.grid(row=r, sticky='s') 
+
             r += 1
-        
+            e3 = Label(popup, text='', font=('Arial',10,'bold'))
+            e3.grid(row=r, sticky='s')
+            r += 1
+
         entry_str.set("")
         info_dict = {}
 

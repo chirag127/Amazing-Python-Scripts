@@ -94,7 +94,7 @@ def fresh_cases_daily():
 
     def ARIMAmodel(series, order, days=21):
         # Fitting and forecast the series
-        train = [x for x in series]
+        train = list(series)
         model = ARIMA(train, order=order)
         model_fit = model.fit(disp=0)
         forecast, err, ci = model_fit.forecast(steps=days, alpha=0.05)
@@ -164,7 +164,7 @@ def death_cases_daily():
 
     def ARIMAmodel(series, order, days=21):
         # Fitting and forecast the series
-        train = [x for x in series]
+        train = list(series)
         model = ARIMA(train, order=order)
         model_fit = model.fit(disp=0)
         forecast, err, ci = model_fit.forecast(steps=days, alpha=0.05)
@@ -231,7 +231,7 @@ def recovered_cases_daily():
 
     def ARIMAmodel(series, order, days=21):
         # Fitting and forecast the series
-        train = [x for x in series]
+        train = list(series)
         model = ARIMA(train, order=order)
         model_fit = model.fit(disp=0)
         forecast, err, ci = model_fit.forecast(steps=days, alpha=0.05)

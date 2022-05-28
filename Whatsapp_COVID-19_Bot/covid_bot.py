@@ -33,9 +33,10 @@ url = "https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATES
 data_json = requests.get(url).json()
 
 # Reading the Information form JSON data.
-df = []
-for row in range(len(data_json["regionData"])):
-    df.append(data_json["regionData"][row])
+df = [
+    data_json["regionData"][row] for row in range(len(data_json["regionData"]))
+]
+
 df = pd.DataFrame(df)
 # Sorted top 3 states according to New-Infections
 data = df.sort_values(['newInfected'], ascending=False)[:3]

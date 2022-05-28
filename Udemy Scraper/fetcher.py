@@ -11,8 +11,7 @@ from sqlite3 import Error
 
 def sql_connection():
     try:
-        con = sqlite3.connect('./Udemy Scraper/udemyDatabase.db')
-        return con
+        return sqlite3.connect('./Udemy Scraper/udemyDatabase.db')
     except Error:
         print(Error)
 
@@ -48,7 +47,7 @@ print("\nSome Categories Available on Udemy include:\nDevelopment -  Python, Web
 # Get input for course category to scrape
 category = input("Enter course category: ")
 
-url = 'https://www.udemy.com/courses/search/?src=ukw&q={}'.format(category)
+url = f'https://www.udemy.com/courses/search/?src=ukw&q={category}'
 
 # initiating the webdriver. Parameter includes the path of the webdriver.
 driver = webdriver.Chrome(driver_path)

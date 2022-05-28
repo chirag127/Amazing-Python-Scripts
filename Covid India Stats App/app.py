@@ -132,12 +132,14 @@ def create_state_list(index):
                   "Manipur", "Arunachal Pradesh", "Meghalaya", "Nagaland", "Sikkim", "Mizoram"]
     payload_list = []
     start_index = 0 + 3 * (index - 1)
-    end_index = 29 if (start_index + 3) > 29 else (start_index + 3)
+    end_index = 29 if start_index > 26 else start_index + 3
     for i in range(start_index, end_index):
-        postback = {}
-        postback["type"] = "postback"
-        postback["title"] = state_list[i]
-        postback["payload"] = state_list[i]
+        postback = {
+            "type": "postback",
+            "title": state_list[i],
+            "payload": state_list[i],
+        }
+
         payload_list.append(postback)
     return payload_list
 

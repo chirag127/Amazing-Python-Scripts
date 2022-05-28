@@ -31,11 +31,11 @@ print("\n Timer has been set for " + str(seconds) + " seconds.")
 
 # Loop for displaying the timer
 
-for i in range(seconds, -1, -1):
-    displayHours = int(seconds / 3600)
-    displayMinutes = int(seconds / 60)
+for _ in range(seconds, -1, -1):
+    displayHours = seconds // 3600
+    displayMinutes = seconds // 60
     if displayMinutes >= 60:
-        displayMinutes = displayMinutes - (displayHours * 60)
+        displayMinutes -= displayHours * 60
     else:
         displayMinutes = displayMinutes
     displaySeconds = int(seconds % 60)

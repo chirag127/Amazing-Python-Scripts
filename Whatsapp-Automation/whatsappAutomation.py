@@ -19,7 +19,7 @@ def whatsapp(to, message):
     sleep(15)
     # This will find the person we want to send the message to in the list
     for name in person:
-        user = driver.find_element_by_xpath("//span[@title='{}']".format(name))
+        user = driver.find_element_by_xpath(f"//span[@title='{name}']")
         user.click()
         text_box = driver.find_element_by_xpath(
             '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]')

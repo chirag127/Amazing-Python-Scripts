@@ -11,7 +11,7 @@ arg_parser.add_argument('-p', "--path", required=True,
 args = vars(arg_parser.parse_args())
 
 try:
-    Video_clip = pyeditor.VideoFileClip(r"{}".format(args['videoFile']))
-    Video_clip.audio.write_audiofile(r"{}".format(args['path']))
+    Video_clip = pyeditor.VideoFileClip(f"{args['videoFile']}")
+    Video_clip.audio.write_audiofile(f"{args['path']}")
 except Exception:
     print("Error!!! Something is worng.")

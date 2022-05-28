@@ -64,7 +64,7 @@ class ZoomZoom:
                 str(count): meeting_name
                 for count, meeting_name in enumerate(data['meetings'], 1)
             }
-            if len(meeting_url_list) == 0:
+            if not meeting_url_list:
                 with indent(4, quote=' *'):
                     puts(
                         colored.red(

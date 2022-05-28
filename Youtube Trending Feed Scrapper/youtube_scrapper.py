@@ -44,8 +44,7 @@ class Trending(mongoengine.Document):
 
 def load_driver():
     """Load Chrome webdriver."""
-    driver = webdriver.Chrome("chromedriver.exe")
-    return driver
+    return webdriver.Chrome("chromedriver.exe")
 
 
 def page_scrap(driver):

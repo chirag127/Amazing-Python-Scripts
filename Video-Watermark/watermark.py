@@ -27,34 +27,32 @@ while (cap.isOpened()):
 
     # Capture frame-by-frame from the video
     ret, frame = cap.read()
-    if ret == True:
-
-        # describe the type of font to be used.
-        font = cv2.FONT_HERSHEY_SIMPLEX
-
-        # Use putText() method for inserting text on video
-        # Parameters:-
-        # frame: current running frame of the video.
-        # Text: The text string to be inserted.
-        # org: bottom-left corner of the text string
-        # font: the type of font to be used.
-        # color: the colour of the font.
-        # thickness: the thickness of the font
-
-        cv2.putText(frame, 'HELLO WORLD', (50, 50), font, 1, (0, 255, 255), 2,
-                    cv2.LINE_4)
-        # write in the output file
-        result.write(frame)
-
-        # Display the resulting frame
-        cv2.imshow('video', frame)
-
-        # creating 'q' as the quit button for the video
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    else:
+    if ret != True:
         break
 
+    # describe the type of font to be used.
+    font = cv2.FONT_HERSHEY_SIMPLEX
+
+    # Use putText() method for inserting text on video
+    # Parameters:-
+    # frame: current running frame of the video.
+    # Text: The text string to be inserted.
+    # org: bottom-left corner of the text string
+    # font: the type of font to be used.
+    # color: the colour of the font.
+    # thickness: the thickness of the font
+
+    cv2.putText(frame, 'HELLO WORLD', (50, 50), font, 1, (0, 255, 255), 2,
+                cv2.LINE_4)
+    # write in the output file
+    result.write(frame)
+
+    # Display the resulting frame
+    cv2.imshow('video', frame)
+
+    # creating 'q' as the quit button for the video
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 # release the cap object
 cap.release()
 result.release()

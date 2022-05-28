@@ -60,19 +60,17 @@ def _calculate():
     ourQuery = ''.join(query)
     Question = 'Your Query was :- '
     Answer = 'Your answer was :- '
-    finalAnswer = Question + str(ourQuery) + \
-        space + Answer + str(answerr) + space
+    finalAnswer = (((Question + ourQuery + space) + Answer) + str(answerr) + space)
 
     if exists('./Voice Calculator/maths.txt'):
         with open('./Voice Calculator/maths.txt', 'a', encoding='utf-8') as mth:
             mth.write(finalAnswer)
             mth.close()
     else:
-        history = open('./Voice Calculator/maths.txt', 'w', encoding='utf-8')
-        history.write(finalAnswer)
-        history.close()
-    print("The answer is " + answerr)
-    audio("the answer is %s" % answerr)
+        with open('./Voice Calculator/maths.txt', 'w', encoding='utf-8') as history:
+            history.write(finalAnswer)
+    print(f"The answer is {answerr}")
+    audio(f"the answer is {answerr}")
 
 
 welcomeInst()

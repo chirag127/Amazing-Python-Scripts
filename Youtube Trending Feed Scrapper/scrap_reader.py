@@ -34,15 +34,11 @@ def read_mongo():
 def read_csv():
     # read databse
     df = pd.read_csv("Youtube.csv")
-    data = []
-    for index, row in df.iterrows():
-        data.append(row)  # Append each dictionary to the list
-    return data  # Return all values
+    return [row for index, row in df.iterrows()]
 
 
 def display(data):
-    i = 0
-    for card in data:
+    for i, card in enumerate(data):
         # For every 10 cards print section
         if i % 10 == 0:
             c = input("Show Section? [y/n] > ")
@@ -52,7 +48,6 @@ def display(data):
                 print("***********************************")
             else:
                 sys.exit()  # If had enough of reading
-        i += 1  # Increament
         print("Title:", card["title"])
         print("Link:",  card["link"])
         print("Channel:", card["channel"])
@@ -72,8 +67,5 @@ if __name__ == "__main__":
         print(usage)
         sys.exit()
 
-    if mongo:
-        data = read_mongo()
-    else:
-        data = read_csv()
+    data = read_mongo() if mongo else read_csv()
     display(data)

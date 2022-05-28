@@ -27,15 +27,14 @@ def get_video():
 #function to convert audio to pdf
 def audio_to_pdf():
     global audio_clip
-    try :
+    try:
         audio_clip = video_clip.audio.write_audiofile(r"my_audio.wav")
         r = sr.Recognizer()
         with sr.AudioFile("my_audio.wav") as source:
             audio_data = r.record(source)
             text = r.recognize_google(audio_data)
-            write_file = open('my_text.txt', 'w')
-            write_file.write(text)
-            write_file.close()
+            with open('my_text.txt', 'w') as write_file:
+                write_file.write(text)
             text_to_pdf('my_text.txt')
         messagebox.showinfo("Message", "Conversion Successfull")
     except :
