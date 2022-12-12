@@ -7,10 +7,10 @@ class App:
     def __init__(self):
         # initialized window
         self.master = tk.Tk()
-        self.master.geometry('280x300')
+        self.master.geometry("280x300")
         self.master.configure(bg="lightblue")
         self.master.resizable(0, 0)
-        self.master.title('Age Calculator')
+        self.master.title("Age Calculator")
         self.statement = tk.Label(self.master)
 
     def run(self):
@@ -48,23 +48,39 @@ class App:
         def ageCalc():
             self.statement.destroy()
             today = date.today()
-            birthDate = date(int(self.yearEntry.get()), int(
-                self.monthEntry.get()), int(self.dayEntry.get()))
+            birthDate = date(
+                int(self.yearEntry.get()),
+                int(self.monthEntry.get()),
+                int(self.dayEntry.get()),
+            )
             age = today.year - birthDate.year
-            if today.month < birthDate.month or today.month == birthDate.month and today.day < birthDate.day:
+            if (
+                today.month < birthDate.month
+                or today.month == birthDate.month
+                and today.day < birthDate.day
+            ):
                 age -= 1
-            self.statement = tk.Label(text=f"{nameValue.get()}'s age is {age}.", font="courier 10", bg="lightblue")
+            self.statement = tk.Label(
+                text=f"{nameValue.get()}'s age is {age}.",
+                font="courier 10",
+                bg="lightblue",
+            )
             self.statement.grid(row=6, column=1, pady=15)
 
         # create a button for calculating age
-        self.button = tk.Button(text="Calculate age", font="courier 12 bold", fg="white", bg="dodgerblue", command=ageCalc)
+        self.button = tk.Button(
+            text="Calculate age",
+            font="courier 12 bold",
+            fg="white",
+            bg="dodgerblue",
+            command=ageCalc,
+        )
         self.button.grid(row=5, column=1)
-        
+
         # infinite loop to run program
         self.master.mainloop()
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     age_calc = App()
     age_calc.run()
-    

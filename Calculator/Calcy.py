@@ -23,12 +23,12 @@ def performMath():
     else:
         equation = input(str(previous))
 
-    if equation == 'quit':
+    if equation == "quit":
         print("GoodBye, Human..!")
         run = False
 
     else:
-        equation = re.sub('[a-zA-Z,:()"{}"]', '', equation)
+        equation = re.sub('[a-zA-Z,:()"{}"]', "", equation)
 
         if previous == 0:
             previous = eval(equation)
