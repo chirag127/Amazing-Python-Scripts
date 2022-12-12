@@ -87,7 +87,7 @@ pytz==2020.5
 PyWavelets==1.1.1
 pywin32==300
 pywinpty==0.5.7
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==21.0.1
 qtconsole==5.0.1
 QtPy==1.9.0
