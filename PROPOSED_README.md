@@ -1,167 +1,145 @@
-# PyCentral-Python-Automation-Toolkit
+# PyAutomation-Utility-Scripts-Python-Lib
 
-<!-- HERO BANNER / LOGO: Replace with high-resolution project logo -->
-<p align="center">
-  <img src="https://raw.githubusercontent.com/chirag127/PyCentral-Python-Automation-Toolkit/main/assets/pycentral-hero.svg" alt="PyCentral Toolkit Hero Banner" width="100%"/>
-</p>
+## 1. APEX ARCHITECT OVERVIEW & INTENT
 
-<p align="center">
-  <a href="https://github.com/chirag127/PyCentral-Python-Automation-Toolkit/actions/workflows/ci.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/chirag127/PyCentral-Python-Automation-Toolkit/ci.yml?branch=main&style=flat-square&label=Build%20Status" alt="Build Status">
-  </a>
-  <a href="https://codecov.io/gh/chirag127/PyCentral-Python-Automation-Toolkit">
-    <img src="https://img.shields.io/codecov/c/github/chirag127/PyCentral-Python-Automation-Toolkit?style=flat-square&token=PYCENTRALCODECOV" alt="Code Coverage">
-  </a>
-  <a href="https://github.com/chirag127/PyCentral-Python-Automation-Toolkit/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue.svg?style=flat-square" alt="License">
-  </a>
-  <a href="https://www.python.org/">
-    <img src="https://img.shields.io/badge/Python-3.10%2B-blueviolet?style=flat-square&logo=python" alt="Python Version">
-  </a>
-  <a href="https://github.com/astral-sh/ruff">
-    <img src="https://img.shields.io/badge/Linter-Ruff-6E40A8?style=flat-square&logo=ruff" alt="Ruff Linter">
-  </a>
-  <a href="https://github.com/chirag127/PyCentral-Python-Automation-Toolkit/stargazers">
-    <img src="https://img.shields.io/github/stars/chirag127/PyCentral-Python-Automation-Toolkit?style=flat-square" alt="GitHub Stars">
-  </a>
-</p>
+This repository is designated as a **Retired Product** from the Apex Portfolio, now preserved as a high-value asset named `PyAutomation-Utility-Scripts-Python-Lib`. It houses a mature, curated collection of Python utilities, originally designed for streamlining developer workflows, complex data processing tasks, and general operational automation.
 
-***
+**Purpose:** To serve as a high-quality, modular Python library containing battle-tested scripts for common engineering productivity bottlenecks.
 
-> **⚡ Star ⭐ this repository** to track updates and support the development of high-velocity Python utilities.
+**Status:** Archived (High-Value Reference Asset).
 
-## 💡 Project Overview: The Apex Automation Engine
+## 2. VISUAL AUTHORITY & STATUS (December 2025 Standard)
 
-**PyCentral** is the definitive, curated collection of professional-grade Python scripts for comprehensive automation, robust data processing, and general utility tasks. Engineered to the highest software architecture standards, this toolkit ensures repeatability, performance, and maintainability across diverse operational workflows, from desktop scripting to enterprise data pipelines.
+<!-- BADGES BLOCK START -->
+[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/PyAutomation-Utility-Scripts-Python-Lib/ci.yml?style=flat-square&logo=github)](https://github.com/chirag127/PyAutomation-Utility-Scripts-Python-Lib/actions/workflows/ci.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/PyAutomation-Utility-Scripts-Python-Lib?style=flat-square&token=XXXXXXXXX)](https://codecov.io/gh/chirag127/PyAutomation-Utility-Scripts-Python-Lib)
+[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-blue?style=flat-square)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/chirag127/PyAutomation-Utility-Scripts-Python-Lib?style=flat-square)](https://github.com/chirag127/PyAutomation-Utility-Scripts-Python-Lib)
+[![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
+<!-- BADGES BLOCK END -->
 
-This project serves as a foundational **Modular Monolith**, providing high-cohesion, low-coupling utilities ready for deployment or integration into larger systems.
+<br>
 
-## 🗺️ System Architecture
+⭐ **Star** this Repo if you find these utilities beneficial for your future reference needs!
 
-PyCentral adheres to a **Modular Monolith** pattern, segregating functionalities into distinct, independent packages (modules) accessible via a unified CLI and core library. This structure ensures clear domain separation and simplifies testing.
+---
 
-mermaid
-C4Context
-title PyCentral Architecture Overview
+## 3. BLUF: VALUE PROPOSITION
 
-System_Boundary(pyc, "PyCentral Toolkit") {
-    Container(cli, "CLI Interface", "Python/Click", "Entry point for all user interactions and scripts.")
-    Container(core, "Core Utilities Module", "Python Libraries", "Reusable functions for file I/O, logging, configuration, and environment management.")
-    Container(data_proc, "Data Processing Module", "Pandas/NumPy/uv", "Specialized modules for cleaning, transformation, and analysis of structured data.")
-    Container(automation, "Automation & Scripting Module", "OS/System APIs", "Task-specific scripts (e.g., file reorganization, scheduled tasks, API polling).")
-}
+`PyAutomation-Utility-Scripts-Python-Lib` offers a modular Python library providing robust, ready-to-deploy solutions for complex data manipulation, developer workflow automation, and cross-platform scripting tasks, adhering strictly to Pythonic best practices.
 
-System(user, "Developer/User", "Interacts via the CLI or imports PyCentral as a library.")
+## 4. ARCHITECTURAL MAP
 
-Rel(user, cli, "Executes commands")
-Rel(cli, core, "Uses core services")
-Rel(cli, data_proc, "Invokes data tasks")
-Rel(cli, automation, "Runs utility scripts")
-Rel(data_proc, core, "Relies on data validation and logging")
+The architecture follows a **Modular Monolith** pattern suitable for consumable libraries, ensuring that dependencies are clearly isolated and core logic remains testable and independent.
+
+text
+PyAutomation-Utility-Scripts-Python-Lib/
+├── core/              # Core processing modules (data transformation, file I/O adapters)
+├── data_pipelines/    # Specific, complex ETL/processing workflows
+├── cli_tools/         # Entry points for CLI execution (using Click/Typer if applicable)
+├── tests/             # Pytest suites for all modules
+├── .venv/
+├── pyproject.toml     # Project metadata and dependency specification (using uv)
+└── README.md
 
 
+## 5. TABLE OF CONTENTS
 
+1. [APEX ARCHITECT OVERVIEW & INTENT](#1-apex-architect-overview--intent)
+2. [VISUAL AUTHORITY & STATUS (December 2025 Standard)](#2-visual-authority--status-december-2025-standard)
+3. [BLUF: VALUE PROPOSITION](#3-bluf-value-proposition)
+4. [ARCHITECTURAL MAP](#4-architectural-map)
+5. [TABLE OF CONTENTS](#5-table-of-contents)
+6. [CORE PRINCIPLES & TOOLCHAIN (AGENTS.md Integration)](#6-core-principles--toolchain-agentsmd-integration)
+7. [DEVELOPMENT STANDARDS & USAGE](#7-development-standards--usage)
+8. [LICENSE](#8-license)
 
-## 📋 Table of Contents
+---
 
-1.  [Project Overview: The Apex Automation Engine](#-project-overview-the-apex-automation-engine)
-2.  [System Architecture](#-system-architecture)
-3.  [AI Agent Directives (Architectural Principles)](#-ai-agent-directives-architectural-principles)
-4.  [Getting Started](#-getting-started)
-5.  [Development and Quality Assurance](#-development-and-quality-assurance)
-6.  [License](#-license)
-
-
-***
-
-## 🤖 AI Agent Directives (Architectural Principles)
+## 6. CORE PRINCIPLES & TOOLCHAIN (AGENTS.md Integration)
 
 <details>
-<summary><strong>📐 SYSTEM SPECIFICATION: ARCHITECTURAL MANDATES FOR AI/DEVELOPER COGNITION</strong></summary>
+<summary>▶️ **APEX AGENT DIRECTIVES & ARCHITECTURE BLUEPRINT**</summary>
 
-This project operates under the **Apex Technical Authority** standard (December 2025). All future modifications, features, and refactoring efforts must align with the following principles derived from the project's foundational `AGENTS.md`.
+### 6.1. SYSTEM IDENTITY & DIRECTIVES
 
-### 1. Technology Stack & Toolchain
+**Role:** Senior Principal Software Architect (40+ Years Experience).
+**Prime Directive:** Enforce Zero-Defect, High-Velocity standards. All modules must be traceable, testable, and idempotent where appropriate.
 
-| Component | Tool / Standard | Purpose |
-| :--- | :--- | :--- |
-| **Language** | Python 3.10+ | Strict type hinting (mypy integration planned). |
-| **Package Manager** | `uv` | Used for ultra-fast dependency resolution, environment management, and virtual environment creation. |
-| **Linting/Formatting** | `Ruff` | Strict adherence to Ruff defaults. Pre-commit hooks are mandatory for formatting checks. |
-| **Testing Framework** | `Pytest` | All units must be tested; required code coverage minimum is **95%**. |
-| **CI/CD** | GitHub Actions | Automated build, lint, format, and test on all pushes to `main` and all Pull Requests. |
+### 6.2. CONTEXT-AWARE APEX TECH STACKS (LATE 2025)
 
-### 2. Architectural Principles
+*   **PRIMARY SCENARIO: DATA / SCRIPTS / AI (Python)**
+    *   **Stack:** Python 3.10+ mandatory. Dependency management via **`uv`** (fast resolver/installer). Linting/Formatting enforced by **`Ruff`** (superset of Pylint/Black/isort).
+    *   **Testing:** Comprehensive unit and integration testing using **`Pytest`** exclusively. Mocking via `pytest-mock`.
+    *   **Architecture:** **Modular Monolith** adhering to clean separation of core logic from I/O concerns (Ports & Adapters simplified for library structure).
 
-*   **Modular Monolith:** Maintain strict separation between `core`, `data_processing`, and specific `scripts`. Modules must interact through explicit interfaces to maintain low coupling.
-*   **SOLID & DRY:** Strict adherence. Avoid global state and ensure every function has a single responsibility.
-*   **Configuration Management:** All configuration must be externalized (e.g., `.ini`, environment variables, or dedicated `pycentral.config`). No hardcoding of paths or parameters.
-*   **Idempotency:** Where feasible (especially in data transformation and file operations), scripts must be idempotent (running the script multiple times yields the same final result).
+### 6.3. MANDATORY ARCHITECTURAL PATTERNS
 
-### 3. Verification & Execution Commands
+1.  **SOLID Principles:** Strictly adhered to, especially Single Responsibility (SRP) for utility functions.
+2.  **DRY (Don't Repeat Yourself):** All common logic must be abstracted into the `core/` module.
+3.  **YAGNI (You Aren't Gonna Need It):** Avoid over-engineering abstract layers unless immediately required by a complex pipeline.
+4.  **Type Hinting:** Full and rigorous static typing using Python's native type system (PEP 484/526).
 
-Agents and developers must use the following commands for consistency and quality assurance:
+### 6.4. VERIFICATION COMMANDS (CI/CD Alignment)
 
-| Task | Command | Description |
-| :--- | :--- | :--- |
-| **Setup Environment** | `uv venv` | Create and activate the virtual environment. |
-| **Install Dependencies** | `uv sync` | Install or synchronize dependencies from `requirements.txt`. |
-| **Run Tests (Full)** | `pytest --cov=pycentral` | Execute all unit and integration tests with coverage reporting. |
-| **Lint & Format Check** | `ruff check .` | Run linting checks without fixing. |
-| **Apply Formatting Fixes** | `ruff check --fix .` | Automatically fix formatting and trivial linting issues. |
-| **Execute CLI Entry** | `python -m pycentral [command]` | Run the primary application entry point. |
+To ensure local environment compliance with CI standards:
+
+bash
+# 1. Create and activate virtual environment
+mkdir .venv && source .venv/bin/activate
+
+# 2. Install dependencies using uv (assuming project setup requires specific tools)
+# Note: Actual installation depends on pyproject.toml specifics
+python -m uv pip install -e .[dev]
+
+# 3. Check Formatting and Linting (Ruff)
+ruff check . --fix
+ruff format .
+
+# 4. Run Unit Tests (Pytest)
+pytest
+
+# 5. Check Type Compliance (Mypy is often preferred but Ruff handles many checks)
+# Assuming mypy is installed as a dev dependency
+pytest --mypy
+
 
 </details>
 
-***
+## 7. DEVELOPMENT STANDARDS & USAGE
 
-## 🚀 Getting Started
+### 7.1. LOCAL SETUP (For Reference/Forking)
 
-### Prerequisites
-
-Ensure you have Python 3.10 or higher installed, along with `uv` (recommended package manager).
+While this is an archived product, the reference setup is as follows:
 
 bash
-# Install uv globally (if not already present)
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# 1. Clone Repository
+git clone https://github.com/chirag127/PyAutomation-Utility-Scripts-Python-Lib.git
+cd PyAutomation-Utility-Scripts-Python-Lib
+
+# 2. Setup Environment (using recommended uv)
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Install Dependencies (Dev & Core)
+# This assumes a functional pyproject.toml setup for local development
+pip install -e .[dev]
+
+# 4. Run Initial Verification (CI Check)
+pytest
+ruff check .
 
 
-### Local Setup
+### 7.2. UTILITY EXECUTION SCRIPTS (Reference)
 
-1.  **Clone the Repository:**
-    bash
-    git clone https://github.com/chirag127/PyCentral-Python-Automation-Toolkit.git
-    cd PyCentral-Python-Automation-Toolkit
-    
+| Script/Module | Description | Example Invocation |
+| :--- | :--- | :--- |
+| `core.file_handler` | Robust file reading/writing abstraction. | `python -m core.file_handler read ./data.csv` |
+| `data_pipelines.aggregator` | Batch aggregation logic for structured data. | `pytest tests/pipelines/test_aggregator.py` |
+| `cli_tools.runner` | Entry point for CLI execution simulation. | `python cli_tools/runner.py --mode process` |
 
-2.  **Initialize Environment & Install Dependencies:**
-    bash
-    # Create a virtual environment using uv
-    uv venv
-    source .venv/bin/activate
-    
-    # Install required dependencies
-    uv sync
-    
+## 8. LICENSE
 
-3.  **Run a Utility Test:**
-    bash
-    # Example: Run the core system check
-    python -m pycentral info
-    
+This repository is licensed under the **CC BY-NC 4.0** license. Attribution is required, and commercial use is strictly prohibited.
 
-## 🛠️ Development and Quality Assurance
-
-PyCentral maintains stringent QA standards enforced by automated workflows.
-
-| Script Command | Description | Tool | Target |
-| :--- | :--- | :--- | :--- |
-| `uv sync --dev` | Install development dependencies (Ruff, Pytest, coverage). | `uv` | Environment Setup |
-| `ruff check .` | Execute fast linting and code analysis checks. | `Ruff` | Quality Control |
-| `ruff format .` | Apply automatic code formatting corrections. | `Ruff` | Consistency |
-| `pytest` | Run the standard unit and integration test suite. | `Pytest` | Verification |
-| `pytest --cov` | Run tests and generate code coverage report. | `Coverage.py` | Metrics |
-
-## 📜 License
-
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** License. See the [LICENSE](LICENSE) file for details.
+See the [LICENSE](LICENSE) file for full details.
