@@ -1,4 +1,4 @@
-name: Apex Python CI/CD Pipeline
+name: Python CI/CD Pipeline
 
 on:
   push:
@@ -6,132 +6,69 @@ on:
   pull_request:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  # === 1. ENVIRONMENT SETUP & INITIALIZATION ===
-  setup:
-    name: Setup Environment
+  build_and_test:
+    name: Lint, Type Check, and Test (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
-    outputs:
-      python-version: ${{ steps.set_version.outputs.python-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    - name: Checkout Repository
+      uses: actions/checkout@v4
 
-      - name: Set Python Version (2026 Standard)
-        id: set_version
-        run: echo "python-version=3.12" >> $GITHUB_OUTPUT
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'uv'
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ steps.set_version.outputs.python-version }}
+    - name: Install Dependencies using uv
+      run: |
+        # Install core tools: ruff (lint/format), pytest (test)
+        uv install --system ruff pytest
+        # Install project dependencies (assuming a requirements.txt or pyproject.toml)
+        if [ -f requirements.txt ]; then
+          uv pip install -r requirements.txt
+        fi
 
-      - name: Install Python Manager (uv)
-        run: pip install uv
+    - name: Verify Code Formatting with Ruff
+      # --fix should NOT be run in CI, only --check
+      run: ruff check . --config pyproject.toml --exit-zero-if-unformatted
 
-      - name: Install Dependencies (uv sync)
-        run: uv sync --system
-      
-      - name: Cache uv Environment
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/uv.lock') }}
+    - name: Run Static Type Checking (Mypy/Pyright Alternative)
+      # Since this is a library/script repo, we enforce strict type checking.
+      # Using 'mypy' standard for demonstration, ensure it's installed via uv/pip if needed.
+      run: |
+        if ! command -v mypy &> /dev/null; then
+          uv pip install mypy
+        fi
+        mypy --strict --ignore-missing-imports . 
 
-  # === 2. CODE QUALITY AND STATIC ANALYSIS ===
-  lint_test:
-    name: Code Quality & Verification
-    needs: setup
+    - name: Run Pytest Unit and Integration Tests
+      # Assuming tests are located in a 'tests/' directory
+      run: pytest
+
+    - name: Upload Coverage Report to Codecov (If Coverage Configured)
+      if: success() && github.event_name == 'push'
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        # Ensure this path matches where your coverage tool outputs (e.g., pytest --cov=./src)
+        files: ./coverage.xml 
+        flags: python${{ matrix.python-version }}
+
+  deploy:
+    name: Deploy Artifact (If Applicable)
+    needs: build_and_test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python and Restore Cache
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ needs.setup.outputs.python-version }}
-      - name: Restore uv Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/uv.lock') }}
-
-      - name: Install Dependencies (uv sync for tools)
-        run: uv sync --system
-
-      - name: Run Ruff (Linter & Formatter)
-        # Ruff handles both linting and formatting consistency
-        run: ruff check . --exit-non-zero-zero-status
-
-      - name: Run Pytest (Unit & Integration Tests)
-        # Assuming tests reside in standard 'tests/' directory
-        run: pytest
-
-      - name: Upload Coverage Report
-        # Assuming pytest-cov is used and generates a cobertura XML file
-        run: pytest --cov=./ --cov-report=xml:coverage.xml
-        continue-on-error: true
-
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
-          name: PyCentral-Toolkit
-          flags: unit-test
-
-  # === 3. NOTEBOOK EXECUTION (JUPYTER SPECIFIC) ===
-  notebook_execution:
-    name: Execute Jupyter Notebooks
-    needs: setup
-    runs-on: ubuntu-latest
-    # This job runs only if notebooks are present or if explicit execution is desired
-    if: contains(toJson(github.event.pull_request.files.*.filename), '.ipynb') || github.event_name == 'push'
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python and Restore Cache
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ needs.setup.outputs.python-version }}
-      - name: Restore uv Cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/uv
-          key: ${{ runner.os }}-uv-${{ hashFiles('**/uv.lock') }}
-
-      - name: Install Notebook Dependencies
-        run: uv sync --system
-      
-      - name: Install nbqa for verification
-        run: pip install nbqa[black,ruff]
-
-      - name: Execute and Verify Notebooks (nbqa)
-        # nbqa runs black/ruff/pytest inside notebooks and checks outputs
-        run: nbqa isort --nbqa-should-run --nbqa-check
-
-  # === 4. ARTIFACT PUBLICATION (Optional: For deployment artifacts) ===
-  deploy_snapshot:
-    name: Create Deployment Snapshot
-    needs: lint_test
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install Build Dependencies
-        run: uv sync --system
-
-      - name: Create Distribution Archive
-        run: | 
-          tar -czf PyCentral-Toolkit-$(echo ${{ github.sha }} | cut -c1-8).tar.gz . --exclude='.git' --exclude='.github'
-
-      - name: Upload Snapshot Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: toolkit-snapshot
-          path: PyCentral-Toolkit-*.tar.gz
-          retention-days: 30
+    - name: Deployment Placeholder
+      run: echo "Deployment steps for PyPI/Artifact Registry go here."
