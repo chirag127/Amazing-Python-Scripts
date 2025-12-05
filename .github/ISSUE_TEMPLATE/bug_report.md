@@ -1,63 +1,55 @@
-# 🐛 Bug Report: System Integrity Alert
+# Bug Report
 
-Thank you for identifying a potential deviation from the Zero-Defect standard. Please provide exhaustive detail below so the Apex Architecture team can rapidly deploy a patch.
+## Context
 
----
+Thank you for helping us improve the project! Please provide as much detail as possible to help us diagnose and fix the issue.
 
-## 1. Executive Summary (BLUF)
+--- Standard 11: Issue Template - Bug Report ---
 
-> **In one sentence, what is the observable defect?**
+## 1. Problem Description
 
----
+*   **What is the unexpected behavior?**
+    (Describe the bug clearly and concisely. What happened that you did not expect?)
 
-## 2. Environment Specification
+*   **What is the expected behavior?**
+    (Describe what you expected to happen. What should the program do instead?)
 
-To ensure accurate replication and patching, document the exact execution context.
+## 2. Steps to Reproduce
 
-*   **Repository Component/Script:** (e.g., `utils/data_cleaner.py`, `Notebook_03_ML_Training.ipynb`)
-*   **Python Version:** (e.g., 3.11.5)
-*   **Operating System:** (e.g., Linux Kernel 6.5, Windows 11, macOS Sonoma)
-*   **Relevant Dependency Versions:** (List critical packages and their versions, e.g., `gemini-sdk==1.5.1`, `pandas==2.2.0`)
+*   **Environment Details:**
+    *   **Operating System:** (e.g., Windows 11, macOS Sonoma 14.3, Ubuntu 22.04 LTS)
+    *   **Python Version:** (e.g., Python 3.10.12, 3.11.5)
+    *   **uv Version:** (e.g., uv 0.1.10)
+    *   **Ruff Version:** (e.g., ruff 0.1.0)
+    *   **Pytest Version:** (e.g., pytest 7.4.0)
+    *   **Relevant Libraries:** (List any other specific library versions if applicable)
 
----
+*   **Reproduction Steps:**
+    1.  Go to '...'
+    2.  Click on '....'
+    3.  Scroll down to '....'
+    4.  Observe bug
 
-## 3. Detailed Defect Analysis
+    (Please be as specific as possible. Include commands run, input data, or configuration files if necessary.)
 
-### 3.1. Steps to Reproduce
+## 3. Error Messages & Logs
 
-List the minimal, sequential actions required to trigger this failure. Be precise.
+*   **Console Output:**
+    (Paste any error messages or relevant output from the console here. Use code blocks for clarity.)
 
-1.  Clone/checkout the repository (Specify commit SHA if applicable: `ABC123XYZ`).
-2.  Execute the command or run the notebook cell:
-    bash
-    [Paste exact command line invocation here, e.g., python src/main.py --mode=batch]
-    
-3.  Observe the failure.
+*   **Traceback:**
+    (If a Python traceback is generated, paste the full traceback here. Use code blocks.)
 
-### 3.2. Expected Behavior
+## 4. Screenshots (Optional)
 
-What was the system **designed** to do according to the architectural documentation?
+(If applicable, add screenshots to help explain your problem. You can drag and drop files here.)
 
----
+## 5. Additional Information (Optional)
 
-### 3.3. Actual Behavior (The Failure Mode)
+(Any other context about the problem that might be helpful. For example, the version of Python, operating system, or any workarounds you have found.)
 
-What did the system *actually* do? Include relevant error messages, stack traces, or unexpected output here. **Crucially, wrap tracebacks in triple backticks.**
+--- Apex Principles Compliance ---
 
-text
-[Paste Console Output or Stack Trace Here]
-
-
----
-
-## 4. Verification & Compliance Check
-
-As per Apex Protocol, please confirm the following:
-
-*   [ ] I have verified this issue persists after running `ruff check`.
-*   [ ] I have verified this issue persists after running the relevant `pytest` suite (if applicable to the script).
-*   [ ] I have checked the latest `main` branch to ensure this isn't a stale issue.
-
-## 5. Attachments (Optional)
-
-If applicable, attach configuration files or truncated data samples necessary for debugging. Avoid sensitive data.
+*   **Repository:** `PyAutomation-Utility-Scripts-Python-Lib`
+*   **Username:** `chirag127`
+*   **Link:** `https://github.com/chirag127/PyAutomation-Utility-Scripts-Python-Lib`
